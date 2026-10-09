@@ -56,4 +56,4 @@ Frofolia is a database-driven website where users enter their personal, educatio
 8. Supabase Table Editor showing the saved row
 
 ## Published Website URL
-https://YOUR-PROJECT.vercel.app
+https://frofolia.vercel.app
