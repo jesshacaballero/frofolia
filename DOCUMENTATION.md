@@ -45,15 +45,38 @@ Frofolia is a database-driven website where users enter their personal, educatio
 - Update → `upsert` on Edit
 - Delete → `delete` on Manage
 
-## Screenshots (add yours before submitting)
-1. Home page
-2. Portfolio Information form
-3. Template Selection page
-4. Template 1 – Simple
-5. Template 2 – Modern
-6. Template 3 – Creative
-7. Manage Portfolio page
-8. Supabase Table Editor showing the saved row
+## Screenshots of the System
+
+### Home Page
+![Home page](screenshots/home.png)
+
+### Portfolio Information Form
+![Portfolio form](screenshots/form.png)
+
+### Template Selection Page
+![Template selection](screenshots/templates.png)
+
+### Manage Portfolio Page
+![Manage portfolios](screenshots/manage.png)
+
+## Screenshots of the 3 Templates
+
+### Template 1 – Simple
+![Simple template](screenshots/template-simple.png)
+
+### Template 2 – Modern
+![Modern template](screenshots/template-modern.png)
+
+### Template 3 – Creative
+![Creative template](screenshots/template-creative.png)
+
+## Database Screenshots
+
+### Table Data (Supabase)
+![Supabase table](screenshots/supabase-table.png)
+
+### Table Structure (Supabase)
+![Supabase structure](screenshots/supabase-structure.png)
 
 ## Published Website URL
 https://frofolia.vercel.app
