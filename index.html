@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Frofolia — Portfolio Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frofolia — Online Portfolio Template Generator</title>
+<meta name="description" content="Enter your details, choose a design, and generate a beautiful online portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="templates.css">
 </head>
 <body>
-<div class="aur"><i></i><i></i><i></i></div>
-<nav id="nav"></nav>
-<main id="app"></main>
-<div class="toast" id="toast"></div>
+<a class="skip" href="#app">Skip to content</a>
+<header id="nav-wrap"><nav id="nav" aria-label="Main"></nav></header>
+<main id="app" tabindex="-1"></main>
+<footer id="foot"></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
+<script src="templates.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
