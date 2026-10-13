@@ -73,35 +73,35 @@ The connection indicator in the navigation bar reflects real request results (Co
 ## Screenshots of the System
 
 ### Home Page
-![Home page](screenshots/home.png)
+![Home page](screenshots/01-home.png)
 
 ### Portfolio Information Form
-![Portfolio form](screenshots/form.png)
+![Portfolio form](screenshots/02-form.png)
 
 ### Template Selection Page
-![Template selection](screenshots/templates.png)
+![Template selection](screenshots/03-templates.png)
 
 ### Manage Portfolio Page
-![Manage portfolios](screenshots/manage.png)
+![Manage portfolios](screenshots/04-manage.png)
 
 ## Screenshots of the 3 Templates
 
 ### Template 1 – Simple
-![Simple template](screenshots/template-simple.png)
+![Simple template](screenshots/05-template-simple.png)
 
 ### Template 2 – Modern
-![Modern template](screenshots/template-modern.png)
+![Modern template](screenshots/06-template-modern.png)
 
 ### Template 3 – Creative
-![Creative template](screenshots/template-creative.png)
+![Creative template](screenshots/07-template-creative.png)
 
 ## Database Screenshots
 
 ### Table Data (Supabase)
-![Supabase table](screenshots/supabase-table.png)
+![Supabase table](screenshots/08-supabase-table.png)
 
 ### Table Structure (Supabase)
-![Supabase structure](screenshots/supabase-structure.png)
+![Supabase structure](screenshots/09-supabase-structure.png)
 
 ## Published Website URL
 https://frofolia.vercel.app
