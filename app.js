@@ -12,10 +12,10 @@ const LOGO = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29V6" fil
 
 /* ======================= Database (Supabase) ======================= */
 let sb = null;
-try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) { console.error(e); }
+try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { global: { fetch: (u, o) => fetch(u, { ...o, cache: 'no-store' }) } }); } catch (e) { console.error(e); }
 let mode = 'connecting', lastErr = '', list = [], loading = true;
 let secure = false, uid = null;          // secure = owner-based RLS (schema-secure.sql) is active
-let draft = null, draftKey = '', errs = {}, pendingTemplate = 0, tplSel = 0, io = null;
+let draft = null, draftKey = '', draftBase = '', errs = {}, pendingTemplate = 0, tplSel = 0, io = null;
 
 const toRow = p => {
   const r = {
@@ -194,14 +194,18 @@ function useTemplate(i) {
 const blank = () => ({ id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name: '', title: '', photo: '', email: '', phone: '', address: '', about: '', education: [{}], skills: [], projects: [{}], experience: [{}], links: [{}], template: pendingTemplate });
 const store = { get: k => { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } }, set: (k, v) => { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage full or unavailable */ } }, del: k => { try { sessionStorage.removeItem(k); } catch (e) { /* ignore */ } } };
 let restored = false;
+const keepDraft = () => store.set(draftKey, { draft, base: draftBase });
 
 function pgEdit(A, id) {
   const ex = id && find(id);
   if (id && !ex) { toast('That portfolio no longer exists', 'err'); go('/manage'); return; }
   draftKey = 'frofolia:draft:' + (id || 'new');
-  const saved = store.get(draftKey);
+  draftBase = ex ? JSON.stringify(toRow(ex)) : '';
+  let saved = store.get(draftKey);
+  // A saved draft is only reused if the database row is unchanged since it was made.
+  if (saved && saved.base !== draftBase) { store.del(draftKey); saved = null; }
   restored = !!saved;
-  draft = saved || (ex ? JSON.parse(JSON.stringify(ex)) : blank());
+  draft = saved ? saved.draft : (ex ? JSON.parse(JSON.stringify(ex)) : blank());
   errs = {};
   normaliseDraft();
   A.innerHTML = `<div class="phead"><div><h1>${ex ? 'Edit portfolio' : 'Create your portfolio'}</h1><p>Fill in what you have. Only your name and email are required, and you can edit everything later.</p></div></div><div id="fw"></div>`;
@@ -270,7 +274,7 @@ document.addEventListener('input', e => {
   if (!k || !draft) return;
   setP(draft, k, e.target.value);
   if (errs[k]) { delete errs[k]; e.target.removeAttribute('aria-invalid'); const m = $('#' + fid(k) + '-e'); if (m) m.remove(); if (!Object.keys(errs).length) showErr(''); }
-  clearTimeout(saveT); saveT = setTimeout(() => store.set(draftKey, draft), 300);
+  clearTimeout(saveT); saveT = setTimeout(() => keepDraft(), 300);
   refreshDone();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'f-skill') { e.preventDefault(); addSkill(); } });
@@ -278,7 +282,7 @@ function addSkill() {
   const el = $('#f-skill'); if (!el) return;
   const v = el.value.trim(); if (!v) return;
   if (!draft.skills.some(s => s.toLowerCase() === v.toLowerCase())) draft.skills.push(v);
-  store.set(draftKey, draft); drawForm(); $('#f-skill').focus();
+  keepDraft(); drawForm(); $('#f-skill').focus();
 }
 function resizeImage(file, o = {}) {
   const { cover = false, size = 480, max = 800, q = .82 } = o;
@@ -308,7 +312,7 @@ document.addEventListener('change', async e => {
   try {
     if (t.dataset.img === 'photo') draft.photo = await resizeImage(f, { cover: true, size: 480 });
     else draft.projects[+t.dataset.i].image = await resizeImage(f, { max: 800, q: .78 });
-    store.set(draftKey, draft); drawForm();
+    keepDraft(); drawForm();
   } catch (err) { toast(errMsg(err), 'err'); }
 });
 function validate() {
@@ -415,13 +419,13 @@ document.addEventListener('click', e => {
   switch (a) {
     case 'sample': openSample(i); break;
     case 'use-tpl': useTemplate(i); break;
-    case 'add-row': draft[k].push({}); store.set(draftKey, draft); drawForm(); break;
-    case 'del-row': draft[k].splice(i, 1); if (!draft[k].length) draft[k].push({}); store.set(draftKey, draft); drawForm(); break;
+    case 'add-row': draft[k].push({}); keepDraft(); drawForm(); break;
+    case 'del-row': draft[k].splice(i, 1); if (!draft[k].length) draft[k].push({}); keepDraft(); drawForm(); break;
     case 'add-skill': addSkill(); break;
-    case 'del-skill': draft.skills.splice(i, 1); store.set(draftKey, draft); drawForm(); break;
+    case 'del-skill': draft.skills.splice(i, 1); keepDraft(); drawForm(); break;
     case 'pick-file': $('#' + b.dataset.t).click(); break;
-    case 'rm-photo': draft.photo = ''; store.set(draftKey, draft); drawForm(); break;
-    case 'rm-pimg': delete draft.projects[i].image; store.set(draftKey, draft); drawForm(); break;
+    case 'rm-photo': draft.photo = ''; keepDraft(); drawForm(); break;
+    case 'rm-pimg': delete draft.projects[i].image; keepDraft(); drawForm(); break;
     case 'save': saveDraft(); break;
     case 'cancel': e.preventDefault(); store.del(draftKey); pendingTemplate = 0; draft = null; go(list.length ? '/manage' : '/'); break;
     case 'discard-draft': store.del(draftKey); route(); break;
