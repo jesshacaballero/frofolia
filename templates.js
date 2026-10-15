@@ -156,8 +156,9 @@ const tpl = (n, p) => (TPL[n] || TPL[0])(p);
 
 /* ---------- sample content for the home page and footer previews ---------- */
 const svgURI = s => 'data:image/svg+xml;utf8,' + encodeURIComponent(s);
-const samplePhoto = svgURI("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 240'><rect width='200' height='240' fill='#A8B6A0'/><circle cx='100' cy='92' r='38' fill='#F7F3E9'/><path d='M24 240c4-56 38-80 76-80s72 24 76 80z' fill='#173D30'/></svg>");
-const sampleArt = (a, b, c) => svgURI(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 300'><rect width='480' height='300' fill='${a}'/><circle cx='350' cy='96' r='72' fill='${b}'/><path d='M0 300C90 170 200 200 290 250S440 230 480 190V300Z' fill='${c}'/></svg>`);
+const samplePhoto = 'images/amara.webp';   // AI-generated portrait of a fictional person
+/* Project images for the sample portfolio (AI-generated mockups of fictional apps) */
+const appCampus = 'images/project-campus.webp', appBudget = 'images/project-budget.webp', appPlants = 'images/project-plants.webp';
 const SAMPLE = {
   id: 'sample', template: 0, name: 'Amara Reyes', title: 'Product Designer & Front-End Developer',
   photo: samplePhoto, email: 'amara@example.com', phone: '+63 912 345 6789', address: 'Cebu City, Philippines',
@@ -165,9 +166,9 @@ const SAMPLE = {
   education: [{ school: 'Cebu Technological University', degree: 'BS Information Technology', years: '2021 – 2025' }],
   skills: ['UI Design', 'JavaScript', 'React', 'Figma', 'SQL', 'Accessibility'],
   projects: [
-    { title: 'Campus Connect', desc: 'A social app that helps students find study groups and events.', link: 'example.com', image: sampleArt('#E9CBBD', '#C5684D', '#A24A31') },
-    { title: 'Budget Buddy', desc: 'A responsive budgeting dashboard with weekly summaries.', link: '', image: sampleArt('#C9D3C2', '#173D30', '#2D5A47') },
-    { title: 'Plant Journal', desc: 'A photo journal for tracking how houseplants grow.', link: '', image: sampleArt('#EFDFC4', '#A8B6A0', '#173D30') }
+    { title: 'Budget Buddy', desc: 'A responsive budgeting dashboard with weekly summaries.', link: '', image: appBudget },
+    { title: 'Plant Journal', desc: 'A photo journal for tracking how houseplants grow.', link: '', image: appPlants },
+    { title: 'Campus Connect', desc: 'A social app that helps students find study groups and events.', link: 'example.com', image: appCampus }
   ],
   experience: [{ role: 'Front-End Intern', company: 'Acme Studio', years: '2024', desc: 'Built reusable interface components and improved page load times.' }],
   links: [{ label: 'GitHub', url: 'github.com' }, { label: 'LinkedIn', url: 'linkedin.com' }]

@@ -137,25 +137,7 @@ function pgDbError(A) {
 }
 
 /* ======================= Home ======================= */
-const HERO_ART = `<svg viewBox="0 0 520 560" role="img" aria-label="Illustration of a laptop showing a portfolio, a notebook, a mug and a plant on a sunlit desk">
-<defs><linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1C8" stop-opacity=".7"/><stop offset="1" stop-color="#FFF1C8" stop-opacity="0"/></linearGradient></defs>
-<rect width="520" height="400" fill="#EDE6D3"/>
-<rect x="300" y="40" width="172" height="232" fill="#FBF3DB" stroke="#CFC6B0" stroke-width="2"/><path d="M386 40v232M300 156h172" stroke="#CFC6B0" stroke-width="2"/>
-<polygon points="300,272 472,272 520,400 240,400" fill="url(#beam)"/>
-<rect y="380" width="520" height="180" fill="#CBB08A"/><path d="M0 380h520" stroke="#B89A72" stroke-width="2"/>
-<ellipse cx="195" cy="386" rx="176" ry="8" fill="#000" opacity=".14"/>
-<rect x="70" y="205" width="250" height="160" rx="6" fill="#252820"/><rect x="80" y="215" width="230" height="140" rx="2" fill="#FFFCF5"/>
-<rect x="94" y="232" width="116" height="16" fill="#252820"/><rect x="94" y="254" width="70" height="8" fill="#C5684D"/>
-<rect x="94" y="278" width="96" height="4" fill="#A8B6A0"/><rect x="94" y="288" width="84" height="4" fill="#A8B6A0"/><rect x="94" y="298" width="92" height="4" fill="#A8B6A0"/>
-<circle cx="280" cy="312" r="28" fill="#C5684D" opacity=".4"/><path d="M236 344v-52a32 32 0 0 1 64 0v52z" fill="#A8B6A0"/><circle cx="268" cy="296" r="9" fill="#F7F3E9"/><path d="M250 344c2-18 10-26 18-26s16 8 18 26z" fill="#173D30"/>
-<rect x="94" y="322" width="38" height="24" fill="#E9CBBD"/><rect x="138" y="322" width="38" height="24" fill="#C9D3C2"/><rect x="182" y="322" width="38" height="24" fill="#EFDFC4"/>
-<path d="M50 365h290l12 15H38z" fill="#3A3D34"/>
-<rect x="372" y="346" width="32" height="34" rx="4" fill="#FFFCF5" stroke="#DED8CA"/><path d="M404 355h8a6 6 0 0 1 0 14h-8" fill="none" stroke="#DED8CA" stroke-width="3"/><path d="M382 336c-4-6 4-8 0-14M394 336c-4-6 4-8 0-14" fill="none" stroke="#A8B6A0" stroke-width="2" stroke-linecap="round"/>
-<path d="M432 330h58l-8 50h-42z" fill="#F2EBDB" stroke="#DED8CA"/><ellipse cx="461" cy="330" rx="29" ry="5" fill="#6B4F36"/>
-<g transform="translate(461 330)"><ellipse cx="0" cy="-50" rx="12" ry="42" fill="#173D30"/><ellipse cx="-26" cy="-34" rx="11" ry="34" transform="rotate(-38 -26 -34)" fill="#4F6F5B"/><ellipse cx="28" cy="-36" rx="11" ry="34" transform="rotate(36 28 -36)" fill="#A8B6A0"/><ellipse cx="-44" cy="-14" rx="9" ry="26" transform="rotate(-70 -44 -14)" fill="#173D30"/><ellipse cx="46" cy="-14" rx="9" ry="26" transform="rotate(68 46 -14)" fill="#4F6F5B"/></g>
-<g transform="rotate(-8 400 475)"><rect x="330" y="430" width="140" height="92" rx="4" fill="#C5684D"/><rect x="330" y="430" width="14" height="92" fill="#A24A31"/><rect x="448" y="430" width="6" height="92" fill="#173D30" opacity=".8"/><rect x="364" y="454" width="58" height="34" fill="#FFFCF5" opacity=".92"/><path d="M372 466h42M372 474h30" stroke="#A8B6A0" stroke-width="3"/></g>
-<path d="M352 520 470 458" stroke="#173D30" stroke-width="5" stroke-linecap="round"/>
-</svg>`;
+const HERO_ART = `<div class="hero-shape"><img src="images/hero-amara.webp" width="765" height="1024" fetchpriority="high" alt="Sample portrait of Amara Reyes in a green blazer"></div>`;
 
 function pgHome(A) {
   A.className = 'home';
