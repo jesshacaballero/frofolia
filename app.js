@@ -102,7 +102,7 @@ function nav() {
   document.documentElement.style.setProperty('--navh', ($('#nav-wrap').offsetHeight || 64) + 'px');
 }
 function renderFoot() {
-  $('#foot').innerHTML = `<div class="foot-in"><div><div class="mark">${LOGO.replace('#173D30', '#FFFCF5')}Frofolia</div><p>An elegant portfolio studio that helps you present your story and professional work beautifully.</p></div>
+  $('#foot').innerHTML = `<div class="foot-in"><div><div class="mark">${LOGO.replaceAll('#173D30', '#FFFCF5')}Frofolia</div><p>An elegant portfolio studio that helps you present your story and professional work beautifully.</p></div>
   <div><h2>Explore</h2><ul><li><a href="#/">Home</a></li><li><a href="#/edit">Create Portfolio</a></li><li><a href="#/manage">My Portfolios</a></li></ul></div>
   <div><h2>Templates</h2><ul>${TN.map((t, i) => `<li><button type="button" data-act="sample" data-i="${i}">${t.name}</button></li>`).join('')}</ul></div></div>
   <div class="foot-bar">© ${new Date().getFullYear()} Frofolia. Online Portfolio Template Generator.</div>`;
